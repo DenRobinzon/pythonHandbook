@@ -100,11 +100,52 @@ for letter in text:
 print(best_letter)
 
 # K.Найдется всё
+titles = []
+for _ in range(int(input())):
+    titles.append(input())
 
+query = input()
 
+for title in titles:
+    if query.lower() in title.lower():
+        print(title)
 
+# L.Меню питания
 
+days = int(input())
+menu = ['Манная', 'Гречневая', 'Пшённая', 'Овсяная', 'Рисовая']
 
+for i in range(days):
+    print(menu[i % 5])
 
+# M.Массовое возведение в степень
 
+numbers = []
 
+for _ in range(int(input())):
+    numbers.append(int(input()))
+
+power = int(input())
+
+for number in numbers:
+    print(number ** power)
+
+# N.Массовое возведение в степень 2.0
+
+numbers = input().split()
+power = int(input())
+
+for number in numbers:
+    print(int(number) ** power, end=' ')
+
+# O.НОД 3.0
+
+numbers = input().split()
+number1 = int(numbers[0])
+
+for number2 in numbers[1:]:
+    while number2:
+        number2 = int(number2)
+        number1, number2 = number2, number1 % number2
+
+print(number1)

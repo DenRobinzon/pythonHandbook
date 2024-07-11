@@ -547,3 +547,37 @@ for i in words:
 
 print(winletter)
 
+# K.Найдется всё
+
+s = []
+for _ in range(int(input())):
+    s.append(input())
+q = input().lower()
+for i in s:
+    if q in i.lower():
+        print(i)
+
+# L.Меню питания
+
+s = ['Манная', 'Гречневая', 'Пшённая', 'Овсяная', 'Рисовая']
+n = int(input())
+for i in range(n):
+    print(s[i % 5])
+
+# M.Массовое возведение в степень
+
+lst = []
+for _ in range(int(input())):
+    lst.append(int(input()))
+d = int(input())
+for i in lst:
+    print(i ** d)
+
+# N.Массовое возведение в степень 2.0
+
+numbers = [int(i) for i in input().split()]
+d = int(input())
+for i in numbers:
+    print(i ** d, end=' ')
+
+# O.НОД 3.0 - не решена
