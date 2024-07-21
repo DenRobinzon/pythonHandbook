@@ -581,3 +581,17 @@ for i in numbers:
     print(i ** d, end=' ')
 
 # O.НОД 3.0 - не решена
+
+# P.Анонс новости 2.0
+title = ''
+length = int(input())
+number_of_strings = int(input())
+
+for i in range(number_of_strings):
+    title += input() + '\n'
+
+if len(title) - (new_line_ch := title.count('\n')) > length:
+    print(title[:(length + new_line_ch - 3)] + '...')
+else:
+    print(title)
+

@@ -1,12 +1,19 @@
-numbers = input().split()
-number1 = int(numbers[0])
+title = ''
+length = int(input())
+lines = int(input())
+short_title = None
 
-for number2 in numbers[1:]:
-    while number2:
-        number2 = int(number2)
-        number1, number2 = number2, number1 % number2
+for i in range(lines):
+    title += input()
+    if (not short_title) and len(title) - i >= length - 3:
+        short_title = title[:length + i - 3] + '...'
+    title += '\n'
 
-print(number1)
+if not short_title:
+    short_title = title
+
+print(short_title)
+
 
 
 
