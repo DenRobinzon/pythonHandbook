@@ -159,11 +159,96 @@ short_title = None
 
 for i in range(lines):
     title += input()
+
     if (not short_title) and len(title) - i >= length - 3:
         short_title = title[:length + i - 3] + '...'
+
+    if i == lines - 1 and len(title) - i <= length:
+        short_title = title.rstrip('\n')
+
     title += '\n'
 
-if not short_title:
-    short_title = title
-
 print(short_title)
+
+# Q.А роза упала на лапу Азора 5.0
+
+text = input().replace(' ', '').lower()
+
+if text == text[::-1]:
+    print('YES')
+else:
+    print('NO')
+
+
+# R.RLE
+
+numbers = input()
+current_number = None
+counter = 0
+
+for number in numbers:
+    if not current_number:
+        current_number = number
+
+    if current_number != number:
+        print(current_number, counter)
+        current_number = number
+        counter = 1
+    else:
+        counter += 1
+
+print(current_number, counter)
+
+# S.Польский калькулятор
+
+input_data = input().split()
+numbers = []
+
+for i in input_data:
+    if i.isdigit():
+        numbers.append(int(i))
+    else:
+        match i:
+            case '*':
+                numbers.append(numbers.pop() * numbers.pop())
+            case '-':
+                numbers.append(numbers.pop(-2) - numbers.pop())
+            case '+':
+                numbers.append(numbers.pop() + numbers.pop())
+            case '/':
+                numbers.append(numbers.pop(-2) - numbers.pop())
+
+print(numbers[0])
+
+# T.Польский калькулятор — 2
+
+input_data = input().split()
+numbers = []
+
+for i in input_data:
+    if i.lstrip('-').isdigit():
+        numbers.append(int(i))
+    else:
+        match i:
+            case '*':
+                numbers.append(numbers.pop() * numbers.pop())
+            case '-':
+                numbers.append(numbers.pop(-2) - numbers.pop())
+            case '+':
+                numbers.append(numbers.pop() + numbers.pop())
+            case '/':
+                numbers.append(numbers.pop(-2) // numbers.pop())
+            case '~':
+                numbers[-1] = -numbers[-1]
+            case '!':
+                number = numbers[-1]
+                factorial = 1
+                for j in range(2, number + 1):
+                    factorial *= j
+                numbers[-1] = factorial
+            case '#':
+                numbers.append(numbers[-1])
+            case '@':
+                numbers[-3], numbers[-2], numbers[-1] = numbers[-2], numbers[-1], numbers[-3]
+
+print(numbers[0])

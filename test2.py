@@ -1,9 +1,5 @@
-n = int(input())
-c = n
-k = 1
-while True:
-    if c <= k:
-        break
-    c -= k
-    k += 1
-print(c, k)
+while (number := int(input())) != 1000:
+    factorial = 1
+    for i in range(1, number + 1):
+        factorial *= i
+    print(factorial)

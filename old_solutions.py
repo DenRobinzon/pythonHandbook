@@ -595,3 +595,23 @@ if len(title) - (new_line_ch := title.count('\n')) > length:
 else:
     print(title)
 
+# Q.А роза упала на лапу Азора 5.0
+
+string = input().replace(' ', '').lower()
+print('YES' if string == string[::-1] else 'NO')
+
+# R.RLE
+
+lst = []
+line = input()
+ch = line[0]
+for i in line[1:]:
+    if i == ch[0]:
+        ch += i
+    else:
+        print(ch[0], len(ch))
+        ch = i
+print(ch[0], len(ch))
+
+
+
