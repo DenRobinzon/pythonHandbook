@@ -632,3 +632,27 @@ s = set()
 for _ in range(int(input())):
     s.update(input().split())
 print(*s, sep='\n')
+
+# D.Кашееды
+
+n, m = int(input()), int(input())
+mnk, ovs = set(), set()
+for _ in range(n):
+    mnk.add(input())
+for _ in range(m):
+    ovs.add(input())
+res = mnk & ovs
+print(len(res) if res else 'Таких нет')
+
+# E.Кашееды — 2
+
+n, m = int(input()), int(input())
+names = set()
+for _ in range(n + m):
+    names.add(input())
+
+k = len(names)
+
+res = 2 * k - n - m
+
+print(res if res else 'Таких нет')
