@@ -613,5 +613,22 @@ for i in line[1:]:
         ch = i
 print(ch[0], len(ch))
 
+# 3.2.Множества, словари
 
+# A.Символическая выжимка
 
+print(''.join(set(input())))
+
+# B.Символическая разница
+
+a = set(input())
+b = set(input())
+c = a & b
+print(''.join(c))
+
+# C.Зайка — 8
+
+s = set()
+for _ in range(int(input())):
+    s.update(input().split())
+print(*s, sep='\n')
