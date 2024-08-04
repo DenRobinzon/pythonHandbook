@@ -582,6 +582,8 @@ for i in numbers:
 
 # O.НОД 3.0 - не решена
 
+# P.Анонс новости 2.0 - не решена
+
 # P.Анонс новости 2.0
 title = ''
 length = int(input())
@@ -656,3 +658,16 @@ k = len(names)
 res = 2 * k - n - m
 
 print(res if res else 'Таких нет')
+
+# F.Кашееды — 3
+
+n, m = int(input()), int(input())
+names = set()
+for _ in range(n + m):
+    name = input()
+    if name in names:
+        names.remove(name)
+    else:
+        names.add(name)
+print(*sorted(names) if names else ('Таких нет', ), sep='\n')
+

@@ -1,17 +1,12 @@
-number_of_children = int(input()) + int(input())
-one_lovers = set()
+numbers = input().split()
+number1 = int(numbers[0])
 
-for _ in range(number_of_children):
-    name = input()
-    if name in one_lovers:
-        one_lovers.remove(name)
-    else:
-        one_lovers.add(name)
+for number2 in numbers[1:]:
+    while number2:
+        number2 = int(number2)
+        number1, number2 = number2, number1 % number2
 
-if one_lovers:
-    print(len(one_lovers))
-else:
-    print('Таких нет')
+print(number1)
 
 
 

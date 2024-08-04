@@ -63,3 +63,5 @@ k = len(names)
 res = 2 * k - n - m
 
 print(res if res else 'Таких нет')
+
+# F.Кашееды — 3
