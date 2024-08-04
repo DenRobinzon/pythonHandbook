@@ -682,3 +682,4 @@ while line := input():
 for a, b in faf.items():
     print(a, b)
 
+
