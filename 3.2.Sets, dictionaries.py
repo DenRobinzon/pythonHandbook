@@ -65,3 +65,50 @@ res = 2 * k - n - m
 print(res if res else 'Таких нет')
 
 # F.Кашееды — 3
+
+num_semolina_lovers = int(input())
+num_oatmeal_lovers = int(input())
+one_lovers = set()
+
+for _ in range(num_oatmeal_lovers + num_semolina_lovers):
+    name = input()
+    if name in one_lovers:
+        one_lovers.remove(name)
+    else:
+        one_lovers.add(name)
+
+if one_lovers:
+    for name in sorted(one_lovers):
+        print(name)
+else:
+    print('Таких нет')
+
+# G.Азбука Морзе
+
+ABC_morze = {
+    'A': '.-', 'B': '-...', 'C': '-.-.',
+    'D': '-..', 'E': '.', 'F': '..-.',
+    'G': '--.', 'H': '....', 'I': '..',
+    'J': '.---', 'K': '-.-', 'L': '.-..',
+    'M': '--', 'N': '-.', 'O': '---',
+    'P': '.--.', 'Q': '--.-', 'R': '.-.',
+    'S': '...', 'T': '-', 'U': '..-',
+    'V': '...-', 'W': '.--', 'X': '-..-',
+    'Y': '-.--', 'Z': '--..',
+    '0': '-----', '1': '.----', '2': '..---',
+    '3': '...--', '4': '....-', '5': '.....',
+    '6': '-....', '7': '--...', '8': '---..',
+    '9': '----.',
+}
+
+text = input()
+
+for char in text.upper():
+    if char == ' ':
+        print()
+    else:
+        print(ABC_morze[char], end=' ')
+
+# H.Кашееды — 4
+
+

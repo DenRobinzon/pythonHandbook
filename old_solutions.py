@@ -671,3 +671,14 @@ for _ in range(n + m):
         names.add(name)
 print(*sorted(names) if names else ('Таких нет', ), sep='\n')
 
+# G.Азбука Морзе
+
+# H.Кашееды — 4
+
+faf = {}
+while line := input():
+    for word in line.split():
+        faf[word] = faf.setdefault(word, 0) + 1
+for a, b in faf.items():
+    print(a, b)
+
