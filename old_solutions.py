@@ -673,7 +673,16 @@ print(*sorted(names) if names else ('Таких нет', ), sep='\n')
 
 # G.Азбука Морзе
 
-# H.Кашееды — 4
+# H.Кашееды — 4 интересное решение наоборот
+kasha = {}
+for _ in range(int(input())):
+    name, *kashas = input().split()
+    for k in kashas:
+        kasha[k] = kasha.get(k, []) + [name]
+
+res = kasha.get(input(), ('Таких нет',))
+print(*sorted(res), sep='\n')
+
 
 faf = {}
 while line := input():
@@ -683,3 +692,30 @@ for a, b in faf.items():
     print(a, b)
 
 
+#  I.Зайка — 9
+
+# J.Транслитерация
+
+gost = {
+    'А': 'A', 'Б': 'B', 'В': 'V',
+    'Г': 'G', 'Д': 'D', 'Е': 'E',
+    'Ё': 'E', 'Ж': 'ZH', 'З': 'Z',
+    'И': 'I', 'Й': 'I', 'К': 'K',
+    'Л': 'L', 'М': 'M', 'Н': 'N',
+    'О': 'O', 'П': 'P', 'Р': 'R',
+    'С': 'S', 'Т': 'T', 'У': 'U',
+    'Ф': 'F', 'Х': 'KH', 'Ц': 'TC',
+    'Ч': 'CH', 'Ш': 'SH', 'Щ': 'SHCH',
+    'Ы': 'Y', 'Э': 'E', 'Ю': 'IU',
+    'Я': 'IA', 'Ь': '', 'Ъ': '',
+}
+
+line = input()
+for ch in line:
+    if ch.upper() in gost:
+        if ch.upper() == ch:
+            print(gost[ch.upper()].lower().capitalize(), end='')
+        else:
+            print(gost[ch.upper()].lower(), end='')
+    else:
+        print(ch, end='')
