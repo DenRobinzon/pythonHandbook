@@ -719,3 +719,57 @@ for ch in line:
             print(gost[ch.upper()].lower(), end='')
     else:
         print(ch, end='')
+
+# K.Однофамильцы
+
+sim_sur = {}
+res = 0
+for _ in range(int(input())):
+    name = input()
+    sim_sur[name] = sim_sur.setdefault(name, 0) + 1
+for name in sim_sur:
+    if sim_sur[name] > 1:
+        res += sim_sur[name]
+print(res)
+
+# L.Однофамильцы — 2
+
+sim_sur = {}
+res = []
+for _ in range(int(input())):
+    name = input()
+    sim_sur[name] = sim_sur.setdefault(name, 0) + 1
+for name, n in sim_sur.items():
+    if n > 1:
+        res.append((name, n))
+if res:
+    for i in sorted(res):
+        print(f'{i[0]} - {i[1]}')
+else:
+    print('Однофамильцев нет')
+
+
+# M.Дайте чего-нибудь новенького!
+
+dishes = set()
+for _ in range(int(input())):
+    dishes.add(input())
+for _ in range(int(input())):
+    for _ in range(int(input())):
+        dishes.discard(input())
+print(*sorted(dishes) if dishes else ('Готовить нечего',), sep='\n')
+
+# N.Это будет шедевр!
+
+prod = []
+rec = {}
+for _ in range(int(input())):
+    prod.append(input())
+for _ in range(int(input())):
+    name = input()
+    for _ in range(int(input())):
+        rec[name] = rec.setdefault(name, []) + [input()]
+    if not set(rec[name]) <= set(prod):
+        del rec[name]
+print(*sorted(rec) if rec else ('Готовить нечего',), sep='\n')
+

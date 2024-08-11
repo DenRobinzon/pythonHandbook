@@ -163,6 +163,73 @@ for ch in input_text:
         output_text += ch
 print(output_text)
 
+# K.Однофамильцы
 
+names = {}
+number_of_namesakes = 0
+
+for _ in range(int(input())):
+    name = input()
+    names[name] = names.get(name, 0) + 1
+
+for count in names.values():
+    if count > 1:
+        number_of_namesakes += count
+
+print(number_of_namesakes)
+
+# L.Однофамильцы — 2
+
+names = {}
+number_of_samenames = 0
+
+for _ in range(int(input())):
+    name = input()
+    names[name] = names.get(name, 0) + 1
+
+for name in sorted(names):
+    if names[name] > 1:
+        print(f'{name} - {names[name]}')
+        number_of_samenames += 1
+
+if not number_of_samenames:
+    print('Однофамильцев нет')
+
+# M.Дайте чего-нибудь новенького!
+
+dishes = set()
+
+for _ in range(int(input())):
+    dishes.add(input())
+
+for _ in range(int(input())):
+    for _ in range(int(input())):
+        dishes.discard(input())
+
+if dishes:
+    print(*sorted(dishes), sep='\n')
+else:
+    print('Готовить нечего')
+
+# N.Это будет шедевр!
+
+ingridients = set()
+recipes = {}
+
+for _ in range(int(input())):
+    ingridients.add(input())
+
+for _ in range(int(input())):
+    dish = input()
+    recipes[dish] = set()
+    for _ in range(int(input())):
+        recipes[dish].add(input())
+    if not ingridients >= recipes[dish]:
+        del recipes[dish]
+
+if recipes:
+    print(*sorted(recipes), sep='\n')
+else:
+    print('Готовить нечего')
 
 
