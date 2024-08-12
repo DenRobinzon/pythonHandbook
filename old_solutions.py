@@ -773,3 +773,45 @@ for _ in range(int(input())):
         del rec[name]
 print(*sorted(rec) if rec else ('Готовить нечего',), sep='\n')
 
+# O.Двоичная статистика!
+
+nums = input().split()
+res = []
+for i in nums:
+    ib = str(bin(int(i)))[2:]
+    res.append({'digits': len(ib), 'units': ib.count('1'), 'zeros': ib.count('0')})
+print(res)
+
+# P.Зайка — 10
+
+res = set()
+while lines := input().lower().split():
+    while 'зайка' in lines:
+        i = lines.index('зайка')
+        del lines[i]
+        if i < 1:
+            iq = 1
+        else:
+            iq = i
+        res.update(lines[iq - 1:i + 1])
+
+print(*res, sep='\n')
+
+# Q.Друзья друзей
+
+frnds = {}
+
+while line := input().split():
+    a, b = line
+    frnds[a] = frnds.setdefault(a, set()) | {b}
+    frnds[b] = frnds.setdefault(b, set()) | {a}
+frnds2 = {}
+
+for i in frnds:
+    frnds[i].discard(i)
+    for j in frnds[i]:
+        frnds2[i] = frnds2.setdefault(i, set()) | frnds[j]
+    frnds2[i] -= frnds[i] | {i}
+
+for i in sorted(frnds2):
+    print(f"{i}: {', '.join(sorted(frnds2[i]))}")

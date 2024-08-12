@@ -232,4 +232,54 @@ if recipes:
 else:
     print('Готовить нечего')
 
+# O.Двоичная статистика!
+
+numbers = input().split()
+stat = []
+
+for number in numbers:
+    number = str(bin(int(number)))[2:]
+    stat.append({"digits": len(number), "units": number.count('1'),
+                 "zeros": number.count('0')})
+
+print(stat)
+
+# P.Зайка — 10
+
+bunny_neighbours = set()
+
+while units := input().split():
+    for _ in range(units.count('зайка')):
+        bunny_index = units.index('зайка')
+        if bunny_index > 0:
+            bunny_neighbours.add(units[bunny_index - 1])
+        if bunny_index < len(units) - 1:
+            bunny_neighbours.add(units[bunny_index + 1])
+        del units[bunny_index]
+print(*bunny_neighbours, sep="\n")
+
+# Q.Друзья друзей
+
+friends_1 = {}
+
+while names := input().split():
+    name1, name2 = names
+    friends_1.setdefault(name1, set()).add(name2)
+    friends_1.setdefault(name2, set()).add(name1)
+
+friends_2 = {}
+
+for friend_1 in friends_1:
+    friends_2[friend_1] = set()
+    for friend_2 in friends_1[friend_1]:
+        friends_2[friend_1].update(friends_1[friend_2] - {friend_1} - friends_1[friend_1])
+
+
+for name in sorted(friends_2):
+    print(f'{name}: {', '.join(sorted(friends_2[name]))}')
+
+
+
+
+
 
