@@ -278,7 +278,57 @@ for friend_1 in friends_1:
 for name in sorted(friends_2):
     print(f'{name}: {', '.join(sorted(friends_2[name]))}')
 
+# R.Карта сокровищ
 
+points = {}
+for i in range(int(input())):
+    x, y = input().split()
+    key = (x[:-1], y[:-1])
+    points[key] = points.get(key, 0) + 1
+
+print(max(points.values()))
+
+# S.Частная собственность
+
+toys = {}
+
+for _ in range(int(input())):
+    input_string = input()
+    new_toys = set(input_string[input_string.index(':') + 2:].split(', '))
+    for toy in new_toys:
+        toys[toy] = toys.get(toy, 0) + 1
+
+for toy in sorted(toys):
+    if toys[toy] == 1:
+        print(toy)
+
+# T.Простая задача 4.0
+
+mutually_prime_numbers = {}
+numbers_n_dividers = {}
+numbers = []
+numbers_str = input().split('; ')
+
+for number in numbers_str:
+    numbers.append(int(number))
+numbers.sort()
+
+for number in numbers:
+    numbers_n_dividers[number] = []
+    for div in range(1, number + 1):
+        if number % div == 0:
+            numbers_n_dividers[number].append(div)
+
+for number1 in numbers:
+    mutually_prime_numbers[number1] = set()
+    for number2 in numbers:
+        if len(set(numbers_n_dividers[number1]) & set(numbers_n_dividers[number2])) == 1:
+            mutually_prime_numbers[number1].add(number2)
+
+for number in mutually_prime_numbers:
+    if mutually_prime_numbers[number]:
+        print(number, ' - ', sep='', end='')
+        print(*sorted(mutually_prime_numbers[number]), sep=', ')
 
 
 

@@ -815,3 +815,55 @@ for i in frnds:
 
 for i in sorted(frnds2):
     print(f"{i}: {', '.join(sorted(frnds2[i]))}")
+
+# R.Карта сокровищ
+
+crd = {}
+for _ in range(int(input())):
+    x, y = (int(i) // 10 for i in input().split())
+    crd[(x, y)] = crd.setdefault((x, y), 0) + 1
+print(max(crd.values()))
+
+# S.Частная собственность
+
+d = {}
+for _ in range(int(input())):
+    name, toys = input().split(': ')
+    toys_set = set(toys.split(', '))
+    for t in toys_set:
+        d[t] = d.setdefault(t, 0) + 1
+
+print(*sorted(t for t in d if d[t] == 1), sep='\n')
+
+# T.Простая задача 4.0
+
+d = {}
+nums = sorted({int(x) for x in input().split('; ')})
+d2 = {}
+for n in nums:
+    if n == 0:
+        d[n] == [0]
+    elif n in (1, -1):
+        d[n] = []
+    else:
+        for n1 in range(2, n + 1):
+            if n % n1 == 0:
+                d[n] = d.setdefault(n, []) + [n1]
+
+for i in d:
+    if i == 0:
+        d2[i] = nums
+    for j in d:
+        if j == 0:
+            d2[i] = [0]
+        elif len(set(d[i]) & set(d[j])) == 0:
+            d2[i] = d2.setdefault(i, []) + [j]
+for i in d2:
+    print(f"{i} - {', '.join(str(y) for y in d2[i])}")
+
+
+
+
+
+
+
