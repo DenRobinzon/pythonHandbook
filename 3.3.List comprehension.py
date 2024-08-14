@@ -26,3 +26,4 @@
 ' - '.join(str(num) for num in sorted(set(numbers)))
 
 # J.RLE наоборот
+''.join(char * number for char, number in rle)
