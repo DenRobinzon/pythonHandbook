@@ -861,6 +861,40 @@ for i in d:
 for i in d2:
     print(f"{i} - {', '.join(str(y) for y in d2[i])}")
 
+# 3.3.Списочные выражения. Модель памяти для типов языка Python
+
+# A.Список квадратов
+
+[x ** 2 for x in range(a, b + 1)]
+
+# B.Таблица умножения 2.0
+
+[[i * j for j in range(1, n + 1)] for i in range(1, n + 1)]
+
+# C.Длины всех слов
+
+[len(word) for word in sentence.split()]
+
+# D.Множество нечетных чисел
+{x for x in numbers if x % 2 != 0}
+
+# E.Множество всех полных квадратов
+{x for x in numbers if not (a := (x ** 0.5)) - int(a)}
+
+# F.Буквенная статистика
+{letter: text.lower().count(letter) for letter in text.lower() if letter.isalpha()}
+
+# G.Делители
+{n: [i for i in range(1, n + 1) if n % i == 0] for n in numbers}
+
+# H.Аббревиатура
+''.join(word[0].upper() for word in string.split())
+
+# I.Преобразование в строку
+' - '.join([str(n) for n in sorted(set(numbers))])
+
+# J.RLE наоборот
+''.join(letter * n for letter, n in rle)
 
 
 
