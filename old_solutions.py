@@ -896,6 +896,93 @@ for i in d2:
 # J.RLE наоборот
 ''.join(letter * n for letter, n in rle)
 
+# 3.4. Встроенные возможности по работе с коллекциями
+
+# A.Автоматизация списка
+print(*[f'{n}. {item}' for n, item in enumerate(input().split(), 1)], sep='\n')
+
+
+# B.Сборы на прогулку
+print(*(f'{name_1} - {name_2}' for name_1, name_2 in zip(input().split(', '), input().split(', '))), sep='\n')
+
+# C.Рациональная считалочка
+from itertools import count
+
+start, end, step = (float(x) for x in input().split())
+
+for n in count(start, step):
+    if n <= end:
+        print(n)
+    else:
+        break
+# D.Словарная ёлка
+
+from itertools import accumulate
+
+for line in accumulate((x + ' ' for x in input().split())):
+    print(line)
+
+# E.Список покупок
+
+from itertools import chain
+
+print(*(f'{index}. {product}' for index, product in enumerate(sorted(chain(input().split(', '),
+                                                                           input().split(', '),
+                                                                           input().split(', '))), 1)), sep='\n')
+# F.Колода карт
+
+from itertools import product
+
+suits = ['пик', 'треф', 'бубен', 'червей']
+suits.remove(input())
+values = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'валет', 'дама', 'король', 'туз']
+print(*(f'{v} {s}' for v, s in list(product(values, suits))), sep='\n')
+
+
+# G.Игровая сетка
+from itertools import combinations
+
+names = [input() for _ in range(int(input()))]
+
+for name_1, name_2 in combinations(names, 2):
+    print(f'{name_1} - {name_2}')
+
+
+# H.Меню питания 2.0
+
+from itertools import cycle
+
+cerials = [input() for _ in range(int(input()))]
+counter = 0
+n = int(input())
+for cerial in cycle(cerials):
+    if counter < n:
+        print(cerial)
+        counter += 1
+    else:
+        break
+
+# I.Таблица умножения 3.0
+from itertools import product
+n = int(input())
+nums = (a * b for a, b in product(range(1, n + 1), range(1, n + 1)))
+for i, num in enumerate(nums):
+    if i % n == 0 and i != 0:
+        print()
+    print(num, end=' ')
+
+# J.
+# K.
+# L.
+# M.
+# N.
+# O.
+# P.
+# Q.
+# R.
+# S.
+# T.
+
 
 
 
