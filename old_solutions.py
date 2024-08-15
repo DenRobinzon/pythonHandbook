@@ -973,8 +973,23 @@ for i, num in enumerate(nums):
 
 # J.
 # K.
-# L.
-# M.
+# L.Список покупок 2.0
+goods = []
+
+for _ in range(int(input())):
+    if (g := input().split(', ')) == 1:
+        goods.append(g)
+    else:
+        goods.extend(g)
+for i, g in enumerate(sorted(goods), 1):
+    print(f'{i}. {g}')
+# M.Расстановка спортсменов
+from itertools import permutations
+
+names = [input() for _ in range(int(input()))]
+for i in sorted(permutations(names)):
+    print(*i, sep=', ')
+
 # N.
 # O.
 # P.

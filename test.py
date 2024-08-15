@@ -1,13 +1,5 @@
 import itertools
 
-height = int(input())
-width = int(input())
-ln = len(str(height * width))
+sportsmen = sorted([input() for _ in range(int(input()))])
 
-nums = itertools.count(1)
-
-for i in range(height * width):
-    num = next(nums)
-    print(f'{num:>{ln}}', end=' ')
-    if num % width == 0:
-        print()
+print(*[', '.join(names) for names in itertools.permutations(sportsmen)], sep='\n')

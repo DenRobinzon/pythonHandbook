@@ -132,8 +132,22 @@ for i in range(height * width):
     if num % width == 0:
         print()
 
-# L.
-# M.
+# L.Список покупок 2.0
+goods = []
+
+for _ in range(int(input())):
+    goods.extend(input().split(', '))
+
+for i, thing in enumerate(sorted(goods), 1):
+    print(f'{i}. {thing}')
+
+# M.Расстановка спортсменов
+import itertools
+
+sportsmen = sorted([input() for _ in range(int(input()))])
+
+print(*[', '.join(names) for names in itertools.permutations(sportsmen)], sep='\n')
+
 # N.
 # O.
 # P.
