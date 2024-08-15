@@ -105,8 +105,32 @@ print('А Б В')
 for option in sorted(options, reverse=True):
     print(f'{option.count('А') + 1} {option.count('Б') + 1} {option.count('В') + 1}')
 
+# подсмотренное решение, но очень не интуитивное
+
+from itertools import combinations
+
+count = int(input())
+nums = range(1, count)
+print('А Б В')
+for i, j in list(combinations(nums, 2)):
+    print(f'{i} {j - i} {count - j}')
+    print(i, j)
+
 # K.Числовой прямоугольник 3.0
 
+import itertools
+
+height = int(input())
+width = int(input())
+ln = len(str(height * width))
+
+nums = itertools.count(1)
+
+for i in range(height * width):
+    num = next(nums)
+    print(f'{num:>{ln}}', end=' ')
+    if num % width == 0:
+        print()
 
 # L.
 # M.

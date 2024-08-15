@@ -1,10 +1,13 @@
 import itertools
 
-slices = int(input())
+height = int(input())
+width = int(input())
+ln = len(str(height * width))
 
-options = itertools.combinations_with_replacement('АБВ', slices - 3)
+nums = itertools.count(1)
 
-print('А Б В')
-
-for option in sorted(options, reverse=True):
-    print(f'{option.count('А') + 1} {option.count('Б') + 1} {option.count('В') + 1}')
+for i in range(height * width):
+    num = next(nums)
+    print(f'{num:>{ln}}', end=' ')
+    if num % width == 0:
+        print()
