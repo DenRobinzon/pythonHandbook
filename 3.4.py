@@ -148,10 +148,102 @@ sportsmen = sorted([input() for _ in range(int(input()))])
 
 print(*[', '.join(names) for names in itertools.permutations(sportsmen)], sep='\n')
 
-# N.
-# O.
-# P.
-# Q.
+# N.Спортивные гадания
+import itertools
+
+sportsmen = sorted([input() for _ in range(int(input()))])
+
+print(*[', '.join(names) for names in itertools.permutations(sportsmen, 3)], sep='\n')
+
+# O.Список покупок 3.0
+import itertools
+
+things_to_buy = []
+
+for _ in range(int(input())):
+    things_to_buy.extend(input().split(', '))
+
+print(*[' '.join(things) for things in itertools.permutations(sorted(things_to_buy), 3)], sep='\n')
+
+
+# P.Расклад таков...
+
+import itertools
+
+suits = {'буби': 'бубен',
+         'пики': 'пик',
+         'трефы': 'треф',
+         'черви': 'червей'}
+
+faces = ['10', '2', '3', '4', '5', '6', '7', '8',
+         '9', 'валет', 'дама', 'король', 'туз']
+
+suit = input()
+face = input()
+
+faces.remove(face)
+
+cards = (' '.join(card) for card in itertools.product(faces, suits.values()))
+selected_cards = (', '.join(selection) for selection in itertools.combinations(cards, 3))
+
+counter = 10
+while counter:
+    string_to_print = next(selected_cards)
+    if suits[suit] in string_to_print:
+        print(string_to_print)
+        counter -= 1
+
+# решение получше, кое-что подсмотрел
+import itertools
+
+suits = {'буби': 'бубен',
+         'пики': 'пик',
+         'трефы': 'треф',
+         'черви': 'червей'}
+
+faces = ['10', '2', '3', '4', '5', '6', '7', '8',
+         '9', 'валет', 'дама', 'король', 'туз']
+
+suit = input()
+face = input()
+
+faces.remove(face)
+
+cards = itertools.product(faces, suits.values())
+three_cards = (selection for selection in itertools.combinations(cards, 3)
+               if suits[suit] in itertools.chain.from_iterable(selection))
+
+for three in itertools.islice(three_cards, 10):
+    print(', '.join((f'{f} {s}' for f, s in three)))
+
+# Q.А есть ещё варианты?
+import itertools
+
+suits = {'буби': 'бубен',
+         'пики': 'пик',
+         'трефы': 'треф',
+         'черви': 'червей'}
+
+faces = ['10', '2', '3', '4', '5', '6', '7', '8',
+         '9', 'валет', 'дама', 'король', 'туз']
+
+suit = input()
+face = input()
+previous_option = input()
+
+faces.remove(face)
+
+cards = itertools.product(faces, suits.values())
+three_cards = (selection for selection in itertools.combinations(cards, 3)
+               if suits[suit] in itertools.chain.from_iterable(selection))
+
+printed = False
+
+while not printed:
+    if (', '.join((f'{f} {s}' for f, s in next(three_cards)))) == previous_option:
+        print(', '.join((f'{f} {s}' for f, s in next(three_cards))))
+        printed = True
+
 # R.
 # S.
 # T.

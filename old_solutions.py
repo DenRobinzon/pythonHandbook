@@ -990,10 +990,30 @@ names = [input() for _ in range(int(input()))]
 for i in sorted(permutations(names)):
     print(*i, sep=', ')
 
-# N.
-# O.
-# P.
-# Q.
+# N.Спортивные гадания
+from itertools import permutations
+
+names = [input() for _ in range(int(input()))]
+for i in sorted(permutations(names, 3)):
+    print(*i, sep=', ')
+
+# O.Список покупок 3.0
+from itertools import combinations, permutations
+
+goods = set()
+goods2 = set()
+for _ in range(int(input())):
+    goods.update(input().split(', '))
+for i in combinations(goods, 3):
+    for j in permutations(i):
+        goods2.add(j)
+for i in sorted(goods2):
+    print(*i)
+
+# P.Расклад таков...
+
+
+# Q.А есть ещё варианты?
 # R.
 # S.
 # T.
