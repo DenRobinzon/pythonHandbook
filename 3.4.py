@@ -244,6 +244,26 @@ while not printed:
         print(', '.join((f'{f} {s}' for f, s in next(three_cards))))
         printed = True
 
-# R.
-# S.
-# T.
+# R.Таблица истинности
+import itertools
+
+input_string = input()
+
+print('a b c f')
+
+for a, b, c in itertools.product((0, 1), repeat=3):
+    print(a, b, c, int(eval(input_string)))
+# S.Таблица истинности 2
+import itertools
+
+expression = input()
+
+variables = sorted({var for var in expression.split() if var.isupper()})
+
+print(*variables, 'F')
+
+for values in itertools.product((0, 1), repeat=len(variables)):
+    print(*values, int(eval(expression, dict(zip(variables, values)))))
+
+# T.Таблицы истинности 3
+

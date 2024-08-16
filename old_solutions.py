@@ -1014,8 +1014,18 @@ for i in sorted(goods2):
 
 
 # Q.А есть ещё варианты?
-# R.
-# S.
+# R.Таблица истинности
+from itertools import product
+
+st = input()
+print('a b c f')
+for a, b, c in product((0, 1), (0, 1), (0, 1)):
+    exec(f'f = {st}')
+    print(f'{a} {b} {c} {int(f)}')
+
+# S.Таблица истинности 2
+
+
 # T.
 
 
