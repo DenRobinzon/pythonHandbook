@@ -1028,6 +1028,60 @@ for a, b, c in product((0, 1), (0, 1), (0, 1)):
 
 # T.
 
+# 3.5. Потоковый ввод/вывод. Работа с текстовыми файлами. JSON
+# A.A+B+...
+
+from sys import stdin
+
+print(sum(int(i) for i in stdin.read().split()))
+
+# B.Средний рост
+from sys import stdin
+n, d = 0, 0
+for line in stdin:
+    _, h, h1 = line.split()
+    d += int(h1) - int(h)
+    n += 1
+print(round(d / n))
+
+# C.Без комментариев 2.0
+from sys import stdin
+
+for line in stdin.readlines():
+    if line.lstrip() and line.rstrip()[0] == '#':
+        continue
+    else:
+        print(line.split('#')[0].rstrip())
+
+# D.Найдётся всё 2.0
+from sys import stdin
+
+lines = [i.rstrip() for i in stdin.readlines()]
+for line in lines[:-1]:
+    if lines[-1].lower() in line.lower():
+        print(line)
+
+# E.А роза упала на лапу Азора 6.0
+from sys import stdin
+
+pal = {word for word in stdin.read().split() if word.lower() == word.lower()[::-1]}
+
+print(*sorted(pal), sep='\n')
+# F.
+# G.
+# H.
+# I.
+# J.
+# K.
+# L.
+# M.
+# N.
+# O.
+# P.
+# Q.
+# R.
+# S.
+# T.
 
 
 

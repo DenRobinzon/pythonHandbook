@@ -1,10 +1,5 @@
-import itertools
+from sys import stdin
 
-expression = input()
-
-variables = sorted({var for var in expression.split() if var.isupper()})
-
-print(*variables, 'F')
-
-for values in itertools.product((0, 1), repeat=len(variables)):
-    print(*values, int(eval(expression, dict(zip(variables, values)))))
+words = stdin.read().split()
+palindromes = set(word for word in words if word.lower() == word.lower()[::-1])
+print(*sorted(palindromes), sep='\n')
