@@ -1067,8 +1067,48 @@ from sys import stdin
 pal = {word for word in stdin.read().split() if word.lower() == word.lower()[::-1]}
 
 print(*sorted(pal), sep='\n')
-# F.
-# G.
+# F.Транслитерация 2.0
+chars = {
+    'А': 'A', 'Б': 'B', 'В': 'V',
+    'Г': 'G', 'Д': 'D', 'Е': 'E',
+    'Ё': 'E', 'Ж': 'ZH', 'З': 'Z',
+    'И': 'I', 'Й': 'I', 'К': 'K',
+    'Л': 'L', 'М': 'M', 'Н': 'N',
+    'О': 'O', 'П': 'P', 'Р': 'R',
+    'С': 'S', 'Т': 'T', 'У': 'U',
+    'Ф': 'F', 'Х': 'KH', 'Ц': 'TC',
+    'Ч': 'CH', 'Ш': 'SH', 'Щ': 'SHCH',
+    'Ы': 'Y', 'Э': 'E', 'Ю': 'IU',
+    'Я': 'IA', 'Ь': '', 'Ъ': '',
+}
+
+with open('cyrillic.txt', encoding='UTF-8') as file_in:
+    srstext = file_in.read()
+    text = ''
+    for ch in srstext:
+        if ch.isalpha() and ch.upper() in chars:
+            ch2 = chars[ch.upper()]
+            if ch.isupper():
+                text += ch2.lower().capitalize()
+            else:
+                text += ch2.lower()
+        else:
+            text += ch
+
+with open('transliteration.txt', 'w', encoding='UTF-8') as file_out:
+    file_out.write(text)
+
+
+# G.Файловая статистика
+with open(f'{input()}', encoding='UTF-8') as file_in:
+    numbers = [int(i) for i in file_in.read().split()]
+
+print(a := len(numbers))
+print(len([n for n in numbers if n > 0]))
+print(min(numbers))
+print(max(numbers))
+print(b := sum(numbers))
+print(round(b / a, 2))
 # H.
 # I.
 # J.
