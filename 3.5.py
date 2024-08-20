@@ -86,8 +86,33 @@ average = round(total_sum / count, 2)
 
 print(count, positive, min_number, max_number, total_sum, average, sep='\n')
 
-# H.
-# I.
+# H.Файловая разница
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    words_1 = set(file_in.read().split())
+
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    words_2 = set(file_in.read().split())
+
+words_3 = sorted(words_1.symmetric_difference(words_2))
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    print(*words_3, sep='\n', file=file_out)
+
+# I.Файловая чистка
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    lines = file_in.readlines()
+
+new_lines = []
+
+for line in lines:
+    new_line = line.replace('\t', '')
+    new_line = ' '.join(new_line.split())
+    if new_line:
+        new_lines.append(new_line)
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    print(*new_lines, sep='\n', file=file_out)
+
 # J.
 # K.
 # L.

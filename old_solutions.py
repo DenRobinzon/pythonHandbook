@@ -1109,8 +1109,28 @@ print(min(numbers))
 print(max(numbers))
 print(b := sum(numbers))
 print(round(b / a, 2))
-# H.
-# I.
+# H.Файловая разница
+with open(f'{input()}', encoding='UTF-8') as file_in:
+    first = set(file_in.read().split())
+
+with open(f'{input()}', encoding='UTF-8') as file_in:
+    second = set(file_in.read().split())
+
+    third = first ^ second
+
+with open(f'{input()}', 'w', encoding='UTF-8') as file_out:
+    print(*sorted(third), sep='\n', file=file_out)
+
+
+# I.Файловая чистка
+with open(f'{input()}', encoding='UTF-8') as file_in, \
+        open(f'{input()}', 'w', encoding='UTF-8') as file_out:
+    for line in file_in.readlines():
+        line = line.replace('\t', '')
+        line = ' '.join(line.split())
+        if line:
+            print(line, file=file_out)
+
 # J.
 # K.
 # L.
