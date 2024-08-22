@@ -1131,9 +1131,67 @@ with open(f'{input()}', encoding='UTF-8') as file_in, \
         if line:
             print(line, file=file_out)
 
-# J.
-# K.
-# L.
+# J.Хвост
+with open(f'{input()}', encoding='UTF-8') as some_file:
+    print(*some_file.readlines()[-int(input()):], sep='')
+
+# K.Файловая статистика 2.0
+import json
+
+with open(f'{input()}', 'r', encoding='UTF-8') as file_in:
+    nums = [int(i) for i in file_in.read().split()]
+
+with open(f'{input()}', 'w', encoding='UTF-8') as file_out:
+    result = {
+        'count': len(nums),
+        'positive_count': len([i for i in nums if i > 0]),
+        'min': min(nums),
+        'max': max(nums),
+        'sum': sum(nums),
+        'average': round(sum(nums) / len(nums), 2),
+    }
+
+    json.dump(result, file_out, ensure_ascii=False, indent=4)
+# L.Разделяй и властвуй
+def more_even(num):
+    ne, no = 0, 0
+    for c in num.lstrip('-'):
+        if int(c) % 2 == 0:
+            ne += 1
+        else:
+            no += 1
+    if ne > no:
+        return 'e'
+    elif no > ne:
+        return 'o'
+    else:
+        return 'eq'
+
+
+with open(f'{input()}', encoding='UTF-8') as file_in, \
+        open(f'{input()}', 'w', encoding='UTF-8') as file_e, \
+        open(f'{input()}', 'w', encoding='UTF-8') as file_o, \
+        open(f'{input()}', 'w', encoding='UTF-8') as file_eq:
+    for line in file_in:
+        e, o, eq = '', '', ''
+        nums = line.split()
+        for n in nums:
+            if more_even(n) == 'e':
+                print(n, file=file_e, end=' ')
+            elif more_even(n) == 'o':
+                print(n, file=file_o, end=' ')
+            else:
+                print(n, file=file_eq, end=' ')
+        file_e.write('\n')
+        file_o.write('\n')
+        file_eq.write('\n')
+
+
+
+
+
+
+
 # M.
 # N.
 # O.

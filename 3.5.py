@@ -113,9 +113,101 @@ for line in lines:
 with open(input(), 'w', encoding='UTF-8') as file_out:
     print(*new_lines, sep='\n', file=file_out)
 
-# J.
-# K.
-# L.
+# J.Хвост
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    print(*file_in.readlines()[-int(input()):], sep='')
+
+# K.Файловая статистика 2.0
+import json
+
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    numbers = [int(number) for number in file_in.read().split()]
+
+stats = {
+    'count': len(numbers),
+    'positive_count': len([number for number in numbers if number > 0]),
+    'min': min(numbers),
+    'max': max(numbers),
+    'sum': sum(numbers),
+    'average': round(sum(numbers) / len(numbers), 2)
+}
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    json.dump(stats, file_out, ensure_ascii=False, indent=2)
+
+# L.Разделяй и властвуй
+even_numbers = []
+odd_numbers = []
+eq_numbers = []
+
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    for line in file_in:
+        even_line = []
+        odd_line = []
+        eq_line = []
+        for number in line.split():
+            even_digits, odd_digits = 0, 0
+            for digit in number:
+                if int(digit) % 2:
+                    odd_digits += 1
+                else:
+                    even_digits += 1
+            if even_digits > odd_digits:
+                even_line.append(number)
+            elif even_digits < odd_digits:
+                odd_line.append(number)
+            else:
+                eq_line.append(number)
+        even_numbers.append(even_line)
+        odd_numbers.append(odd_line)
+        eq_numbers.append(eq_line)
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    print('\n'.join((' '.join(numbers) for numbers in even_numbers)), file=file_out)
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    print('\n'.join((' '.join(numbers) for numbers in odd_numbers)), file=file_out)
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    print('\n'.join((' '.join(numbers) for numbers in eq_numbers)), file=file_out)
+
+# только на строках
+
+even_numbers = ''
+odd_numbers = ''
+eq_numbers = ''
+evens = '08642'
+with open(input(), 'r', encoding='UTF-8') as file_in:
+    for line in file_in:
+        even_line = ''
+        odd_line = ''
+        eq_line = ''
+        for number in line.split():
+            even_digits, odd_digits = 0, 0
+            for digit in number:
+                if digit in evens:
+                    even_digits += 1
+                else:
+                    odd_digits += 1
+            if even_digits > odd_digits:
+                even_line += number + ' '
+            elif even_digits < odd_digits:
+                odd_line += number + ' '
+            else:
+                eq_line += number + ' '
+        even_numbers += even_line + '\n'
+        odd_numbers += odd_line + '\n'
+        eq_numbers += eq_line + '\n'
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    file_out.write(even_numbers)
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    file_out.write(odd_numbers)
+
+with open(input(), 'w', encoding='UTF-8') as file_out:
+    file_out.write(eq_numbers)
+
 # M.
 # N.
 # O.
