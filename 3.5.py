@@ -292,7 +292,69 @@ if files_with_query:
 else:
     print('404. Not Found')
 
-# Q.
-# R.
-# S.
-# T.
+# Q.Прятки
+with open('secret.txt', encoding='UTF-8') as file_in:
+    text = file_in.read()
+
+text_decoded = ''
+
+for ch in text:
+    code = ord(ch)
+    if code > 128:
+        code %= 256
+    text_decoded += chr(code)
+
+print(text_decoded)
+
+# R.Сколько вешать в байтах?
+import os
+
+size = os.path.getsize(input())
+
+unit = 'Б'
+
+if size >= 1024 ** 3:
+    size /= 1024 ** 3
+    unit = 'ГБ'
+elif size >= 1024 ** 2:
+    size /= 1024 ** 2
+    unit = 'МБ'
+elif size >= 1024:
+    size /= 1024
+    unit = 'КБ'
+
+if size > int(size):
+    size = int(size) + 1
+else:
+    size = int(size)
+
+print(size, unit, sep='')
+
+# S.Это будет наш секрет
+shift = int(input())
+text_encoded = ''
+
+with open('public.txt') as file_in:
+    text = file_in.read()
+
+for ch in text:
+    code = ord(ch)
+    if code in range(65, 91):
+        code = (code - 65 + shift) % 26 + 65
+
+    elif code in range(97, 123):
+        code = (code - 97 + shift) % 26 + 97
+
+    text_encoded += chr(code)
+
+with open('private.txt', 'w') as file_out:
+    file_out.write(text_encoded)
+
+# T.Файловая сумма
+sum_result = 0
+
+with open('numbers.num', 'rb') as file_in:
+    while (number := int.from_bytes(file_in.read(2))):
+        sum_result += number
+
+print(sum_result % 65536)

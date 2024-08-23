@@ -1,18 +1,8 @@
-from sys import stdin
+sum_result = 0
 
-query = input()
-files = stdin.read().split()
+with open('numbers.num', 'rb') as file_in:
+    while (number := int.from_bytes(file_in.read(2))):
+        sum_result += number
 
-query_modified = ''.join(query.split()).lower()
-files_with_query = []
+print(sum_result % 65536)
 
-for file in files:
-    with open(file, encoding='UTF-8') as file_in:
-        content = ''.join(file_in.read().split()).lower()
-        if query_modified in content:
-            files_with_query.append(file)
-
-if files_with_query:
-    print(*files_with_query, sep='\n')
-else:
-    print('404. Not Found')

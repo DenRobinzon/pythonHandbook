@@ -1220,9 +1220,54 @@ if res:
 else:
     print('404. Not Found')
 
-# Q.
-# R.
-# S.
+# Q.Прятки
+# R.Сколько вешать в байтах?
+import os.path
+import math
+
+size = os.path.getsize(input())
+if size < 1024:
+    print(f'{math.ceil(size)}Б')
+elif size < 1024 ** 2:
+    print(f'{math.ceil(size / 1024)}КБ')
+elif size < 1024 ** 3:
+    print(f'{math.ceil(size / 1024 ** 2)}МБ')
+else:
+    print(f'{math.ceil(size / 1024 ** 3)}ГБ')
+
+# S.Это будет наш секрет
+k = int(input())
+
+with open('public.txt', encoding='UTF-8') as file_in:
+    text = file_in.read()
+
+text2 = ''
+
+for ch in text:
+    i = k % 26 + ord(ch)
+    if 65 <= ord(ch) <= 90:
+        if i < 65:
+            ch2 = chr(i + 26)
+        elif 65 <= i <= 90:
+            ch2 = chr(i)
+        else:
+            ch2 = chr(i - 26)
+
+    elif 97 <= ord(ch) <= 122:
+        if i < 97:
+            ch2 = chr(i + 26)
+        elif 97 <= i <= 122:
+            ch2 = chr(i)
+        else:
+            ch2 = chr(i - 26)
+    else:
+        ch2 = ch
+    text2 += ch2
+
+with open('private.txt', 'w', encoding='UTF-8') as file_out:
+    file_out.write(text2)
+
+
 # T.
 
 
