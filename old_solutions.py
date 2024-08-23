@@ -1186,16 +1186,40 @@ with open(f'{input()}', encoding='UTF-8') as file_in, \
         file_o.write('\n')
         file_eq.write('\n')
 
+# M.Обновление данных
+import json
+from sys import stdin
 
+filename = input()
+with open(filename, encoding='UTF-8') as file_in:
+    res = json.load(file_in)
 
+for line in stdin:
+    k, v = line.rstrip().split(' == ')
+    res[k] = v
 
+with open(filename, 'w', encoding='UTF-8') as file_json:
+    json.dump(res, file_json, ensure_ascii=False, indent=2, sort_keys=True)
 
-
-
-# M.
 # N.
+
 # O.
-# P.
+# P.Найдётся всё 3.0
+from sys import stdin
+res = []
+
+query = input().lower()
+files = stdin.read().split()
+for f in files:
+    with open(f, encoding='UTF-8') as file_in:
+        text = ' '.join(file_in.read().replace('&nbsp;', ' ').split()).lower()
+        if query in text:
+            res.append(f)
+if res:
+    print(*res, sep='\n')
+else:
+    print('404. Not Found')
+
 # Q.
 # R.
 # S.

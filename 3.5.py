@@ -208,10 +208,90 @@ with open(input(), 'w', encoding='UTF-8') as file_out:
 with open(input(), 'w', encoding='UTF-8') as file_out:
     file_out.write(eq_numbers)
 
-# M.
-# N.
-# O.
-# P.
+# M.Обновление данных
+import json
+file_users, file_updates = input(), input()
+
+with open(file_users, encoding='UTF-8') as file_in:
+    users = json.load(file_in)
+
+with open(file_updates, encoding='UTF-8') as file_in:
+    updates = json.load(file_in)
+
+users_new = {}
+
+for user in users:
+    for update in updates:
+        if user["name"] == update["name"]:
+            for k in update:
+                if k not in user or update[k] > user[k]:
+                    user[k] = update[k]
+    users_new[user["name"]] = {k: v for k, v in user.items() if k != "name"}
+
+with open(file_users, 'w', encoding='UTF-8') as file_out:
+    json.dump(users_new, file_out, ensure_ascii=False, indent=4)
+
+# N.Слияние данных
+import json
+file_users, file_updates = input(), input()
+
+with open(file_users, encoding='UTF-8') as file_in:
+    users = json.load(file_in)
+
+with open(file_updates, encoding='UTF-8') as file_in:
+    updates = json.load(file_in)
+
+users_new = {}
+
+for user in users:
+    for update in updates:
+        if user["name"] == update["name"]:
+            for k in update:
+                if k not in user or update[k] > user[k]:
+                    user[k] = update[k]
+    users_new[user["name"]] = {k: v for k, v in user.items() if k != "name"}
+
+with open(file_users, 'w', encoding='UTF-8') as file_out:
+    json.dump(users_new, file_out, ensure_ascii=False, indent=4)
+
+# O.Поставь себя на моё место
+import json
+from sys import stdin
+
+with open('scoring.json', encoding='UTF-8') as file_in:
+    scoring = json.load(file_in)
+
+answers = stdin.read().split()
+score = 0
+
+for group in scoring:
+    points_for_test = group['points'] // len(group['tests'])
+    for test in group['tests']:
+        if test['pattern'] == answers.pop(0):
+            score += points_for_test
+
+print(score)
+
+# P.Найдётся всё 3.0
+from sys import stdin
+
+query = input()
+files = stdin.read().split()
+
+query_modified = ''.join(query.split()).lower()
+files_with_query = []
+
+for file in files:
+    with open(file, encoding='UTF-8') as file_in:
+        content = ''.join(file_in.read().split()).lower()
+        if query_modified in content:
+            files_with_query.append(file)
+
+if files_with_query:
+    print(*files_with_query, sep='\n')
+else:
+    print('404. Not Found')
+
 # Q.
 # R.
 # S.
