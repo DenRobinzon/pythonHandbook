@@ -55,8 +55,46 @@ def is_palindrome(object):
         object = str(object)
     return object == object[::-1]
 
-# I.
-# J.
+# I.Простая задача 5.0
+def is_prime(number):
+    prime = True
+    if number < 2:
+        prime = False
+    else:
+        for divider in range(2, int(number ** 0.5) + 1):
+            if number % divider == 0:
+                prime = False
+                break
+    return prime
+
+# J.Слияние
+def merge(numbers1, numbers2):
+    numbers = list(numbers1 + numbers2)
+    is_sorted = False
+    while not is_sorted:
+        is_sorted = True
+        for i in range(len(numbers) - 1):
+            if numbers[i] > numbers[i + 1]:
+                numbers[i], numbers[i + 1] = numbers[i + 1], numbers[i]
+                is_sorted = False
+    return numbers
+
+# а это подсмотрел
+def merge(numbers1, numbers2):
+    numbers1, numbers2 = list(numbers1), list(numbers2)
+    i1, i2 = 0, 0
+    numbers = []
+    while i1 < len(numbers1) and i2 < len(numbers2):
+        if numbers1[i1] < numbers2[i2]:
+            numbers.append(numbers1[i1])
+            i1 += 1
+        else:
+            numbers.append(numbers2[i2])
+            i2 += 1
+    numbers.extend(numbers1[i1:])
+    numbers.extend(numbers2[i2:])
+    return tuple(numbers)
+
 # K.
 # L.
 # M.

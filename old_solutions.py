@@ -1323,6 +1323,35 @@ def is_palindrome(smth):
     else:
         return False
 
+# 4.2. Позиционные и именованные аргументы. Функции высших порядков. Лямбда-функции
+# A.Генератор списков
+def make_list(length, value=0):
+    return [value for i in range(length)]
+
+# B.Генератор матриц
+def make_matrix(size, value=0):
+    if type(size) is int:
+        return [[value for i in range(size)] for i in range(size)]
+    else:
+        return [[value for i in range(size[0])] for j in range(size[1])]
+# C.
+# D.
+# E.
+# F.
+# G.
+# H.
+# I.
+# J.
+# K.
+# L.
+# M.
+# N.
+# O.
+# P.
+# Q.
+# R.
+# S.
+# T.
 
 # I.
 # J.

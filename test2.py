@@ -1,18 +1,11 @@
-import datetime
-lst = [i for i in range(100002)]
+from functools import reduce
 
-start = datetime.datetime.now()
-for i in range(100000):
-    lst.pop(-2)
-finish = datetime.datetime.now()
-print(str(finish - start))
+def gcd_for_2(num1, num2):
+    while num2:
+        num1, num2 = num2, num1 % num2
+    return num1
 
-lst = [i for i in range(100002)]
+def gcd(*numbers):
+    return reduce(gcd_for_2, numbers)
 
-
-start = datetime.datetime.now()
-for i in range(100000):
-    lst.pop()
-finish = datetime.datetime.now()
-
-print(str(finish - start))
+print(gcd(6))
