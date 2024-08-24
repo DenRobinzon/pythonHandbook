@@ -1268,8 +1268,74 @@ with open('private.txt', 'w', encoding='UTF-8') as file_out:
     file_out.write(text2)
 
 
-# T.
+# T. Не решена
 
+4.1. Функции. Области видимости. Передача параметров в функции
+# A.Функциональное приветствие
+def print_hello(name):
+    print(f'Hello, {name}!')
+
+# B.Функциональный НОД
+def gcd(n1, n2):
+    mn = max(n1, n2)
+    k = min(n1, n2)
+    while k:
+        mx, mn = mn, k
+        k = mx % mn
+    return mn
+
+
+# C.Длина числа
+def number_length(num):
+    return len(str(num).lstrip('-'))
+
+# D.Имя of the month
+def month(num, lang):
+    m = {'en': ['January', 'February', 'March',
+                'April', 'May', 'June',
+                'July', 'August', 'September',
+                'October', 'November', 'December'],
+         'ru': ['Январь', 'Февраль', 'Март',
+                'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь']}
+
+    return m[lang][num - 1]
+
+# E.Числовая строка
+def split_numbers(nums):
+    return tuple(int(i) for i in nums.split())
+
+# F.Модернизация системы вывода
+def modern_print(line, lines=set()):
+    if line not in lines:
+        print(line)
+        lines.add(line)
+
+# G.Шахматный «обед» не решена
+
+# H.А роза упала на лапу Азора 7.0
+def is_palindrome(smth):
+    if isinstance(smth, int):
+        smth = str(smth)
+    if smth == smth[::-1]:
+        return True
+    else:
+        return False
+
+
+# I.
+# J.
+# K.
+# L.
+# M.
+# N.
+# O.
+# P.
+# Q.
+# R.
+# S.
+# T.
 
 
 
