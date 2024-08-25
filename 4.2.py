@@ -30,10 +30,52 @@ def gcd(*numbers):
             a, b = b, a % b
     return a
 
-# D.
-# E.
-# F.
-# G.
+# D.Имя of the month 2.0
+def month(number, languge='ru'):
+    months = {'en': ['January', 'February', 'March',
+                     'April', 'May', 'June',
+                     'July', 'August', 'September',
+                     'October', 'November', 'December'],
+              'ru': ['Январь', 'Февраль', 'Март',
+                     'Апрель', 'Май', 'Июнь',
+                     'Июль', 'Август', 'Сентябрь',
+                     'Октябрь', 'Ноябрь', 'Декабрь']}
+    return months[languge][number - 1]
+
+# E.Подготовка данных
+def to_string(*data, sep=' ', end='\n'):
+    return sep.join([str(element) for element in data]) + end
+
+# F.Кофейня
+def order(*wishlist):
+    recipes = {
+        'Эспрессо': {'coffee': 1},
+        'Капучино': {'coffee': 1, 'milk': 3},
+        'Макиато': {'coffee': 2, 'milk': 1},
+        'Кофе по-венски': {'coffee': 1, 'cream': 2},
+        'Латте Макиато': {'coffee': 1, 'milk': 2, 'cream': 1},
+        'Кон Панна': {'coffee': 1, 'cream': 1}
+    }
+    served_drink = None
+
+    for drink in wishlist:
+        in_stock_after = {}
+        for ingridient in recipes[drink]:
+            if recipes[drink][ingridient] <= in_stock[ingridient]:
+                in_stock_after[ingridient] = in_stock[ingridient] - recipes[drink][ingridient]
+            else:
+                break
+        else:
+            in_stock.update(in_stock_after)
+            served_drink = drink
+            break
+
+    return served_drink if served_drink else 'К сожалению, не можем предложить Вам напиток'
+
+
+# G.В эфире рубрика «Эксперименты»
+
+
 # H.
 # I.
 # J.

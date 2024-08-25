@@ -1334,11 +1334,83 @@ def make_matrix(size, value=0):
         return [[value for i in range(size)] for i in range(size)]
     else:
         return [[value for i in range(size[0])] for j in range(size[1])]
-# C.
-# D.
-# E.
-# F.
-# G.
+# C.Не решена
+# D.Имя of the month 2.0
+def month(n, lang='ru'):
+    m = {'en': ['January', 'February', 'March',
+                'April', 'May', 'June',
+                'July', 'August', 'September',
+                'October', 'November', 'December'],
+         'ru': ['Январь', 'Февраль', 'Март',
+                'Апрель', 'Май', 'Июнь',
+                'Июль', 'Август', 'Сентябрь',
+                'Октябрь', 'Ноябрь', 'Декабрь']}
+    return m[lang][n - 1]
+
+# E.Подготовка данных
+def to_string(*args, sep=' ', end='\n'):
+    return f'{sep}'.join(str(i) for i in args) + f'{end}'
+
+# F.Кофейня
+def order(*args):
+    res = 0
+    rec = {
+        "Эспрессо": {"coffee": 1},
+        "Капучино": {"coffee": 1,
+                     "milk": 3},
+        "Макиато": {"coffee": 2,
+                    "milk": 1},
+        "Кофе по-венски": {"coffee": 1,
+                           "cream": 2},
+        "Латте Макиато": {"coffee": 1,
+                          "milk": 2,
+                          "cream": 1},
+        "Кон Панна": {"coffee": 1,
+                      "cream": 1},
+    }
+    for arg in args:
+        flag = True
+        for ing in rec[arg]:
+            if in_stock[ing] < rec[arg][ing]:
+                flag = False
+                break
+        if flag:
+            res = arg
+            for ing in rec[arg]:
+                in_stock[ing] -= rec[arg][ing]
+            break
+    if res:
+        return res
+    else:
+        return 'К сожалению, не можем предложить Вам напиток'
+
+# G.В эфире рубрика «Эксперименты»
+results = []
+
+
+def enter_results(*args):
+    for i in range(0, len(args), 2):
+        results.append((args[i], args[i + 1]))
+
+
+def get_sum():
+    s1, s2 = 0, 0
+    for x, y in results:
+        s1 += x
+        s2 += y
+    return round(s1, 2), round(s2, 2)
+
+
+def get_average():
+    s1, s2 = 0, 0
+    for x, y in results:
+        s1 += x
+        s2 += y
+    return round(s1 / len(results), 2), round(s2 / len(results), 2)
+
+
+
+
 # H.
 # I.
 # J.
