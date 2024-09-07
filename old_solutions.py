@@ -1408,9 +1408,20 @@ def get_average():
         s2 += y
     return round(s1 / len(results), 2), round(s2 / len(results), 2)
 
+# H.
+lambda x: (len(x), x.lower())
+# I.
+lambda num: not sum(int(digit) for digit in str(num)) % 2
 
 
-
+# 4.3. Рекурсия. Декораторы. Генераторы
+# A.
+# B.
+# C.
+# D.
+# E.
+# F.
+# G.
 # H.
 # I.
 # J.
@@ -1424,20 +1435,5 @@ def get_average():
 # R.
 # S.
 # T.
-
-# I.
-# J.
-# K.
-# L.
-# M.
-# N.
-# O.
-# P.
-# Q.
-# R.
-# S.
-# T.
-
-
 
 

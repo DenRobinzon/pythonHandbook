@@ -74,18 +74,38 @@ def order(*wishlist):
 
 
 # G.В эфире рубрика «Эксперименты»
+results = []
 
 
-# H.
-# I.
-# J.
-# K.
-# L.
-# M.
-# N.
-# O.
-# P.
-# Q.
-# R.
-# S.
-# T.
+def enter_results(*data):
+    results.extend(data)
+
+
+def get_sum():
+    return round(sum(results[::2]), 2), round(sum(results[1::2]), 2)
+
+
+def get_average():
+    nums_1, nums_2 = results[::2], results[1::2]
+    return round(sum(nums_1) / len(nums_1), 2), round(sum(nums_2) / len(nums_2), 2)
+
+# H.Длинная сортировка
+(len(line), line.lower())
+
+# I.Чётная фильтрация
+lambda num: not sum(int(digit) for digit in str(num)) % 2
+
+# J.Ключевой секрет
+
+import itertools
+
+
+def secret_replace(text, **replaces):
+    replaces_cycled = {k: itertools.cycle(v) for k, v in replaces.items()}
+    text_decrypted = ''
+    for ch in text:
+        if ch in replaces_cycled:
+            text_decrypted += next(replaces_cycled[ch])
+        else:
+            text_decrypted += ch
+    return text_decrypted
