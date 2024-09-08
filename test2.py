@@ -1,12 +1,12 @@
-def reduce(function, iterable, initializer=None):
-    it = iter(iterable)
-    if initializer is None:
-        value = next(it)
-    else:
-        value = initializer
-    for element in it:
-        value = function(value, element)
-    return value
+def make_linear(lst):
+    lst_linear = []
+    for item in lst:
+        if type(item) is list:
+            lst_linear.extend(make_linear(item))
+        else:
+            lst_linear.append(item)
+    return lst_linear
 
-reduce(sum, (1,2,3))
 
+
+print(make_linear([1, [3, [6, 5]]]))

@@ -1,41 +1,22 @@
-in_stock = {'coffee': 4, 'milk': 4, 'cream': 0}
+def merge_sort(numbers):
+    if len(numbers) == 1:
+        return numbers
 
+    numbers_sorted = []
+    i_1 = i_2 = 0
+    mid = len(numbers) // 2
+    nums_1 = merge_sort(numbers[:mid])
+    nums_2 = merge_sort(numbers[mid:])
 
-def order(*wishlist):
-    # global in_stock
-    recipes = {
-        "Эспрессо": {"coffee": 1},
-        "Капучино": {"coffee": 1,
-                     "milk": 3},
-        "Макиато": {"coffee": 2,
-                    "milk": 1},
-        "Кофе по-венски": {"coffee": 1,
-                           "cream": 2},
-        "Латте Макиато": {"coffee": 1,
-                          "milk": 2,
-                          "cream": 1},
-        "Кон Панна": {"coffee": 1,
-                      "cream": 1},
-    }
-    served_drink = None
-
-    for drink in wishlist:
-        in_stock_after = {}
-        for ingridient in recipes[drink]:
-            if recipes[drink][ingridient] <= in_stock[ingridient]:
-                in_stock_after[ingridient] = in_stock[ingridient] - recipes[drink][ingridient]
-            else:
-                break
+    while i_1 < len(nums_1) and i_2 < len(nums_2):
+        if nums_1[i_1] < nums_2[i_2]:
+            numbers_sorted.append(nums_1[i_1])
+            i_1 += 1
         else:
-            in_stock = in_stock_after
-            served_drink = drink
-            break
+            numbers_sorted.append(nums_2[i_2])
+            i_2 += 1
+    numbers_sorted.extend((nums_1[i_1:] + nums_2[i_2:]))
+    return numbers_sorted
 
-    return served_drink if served_drink else 'К сожалению, не можем предложить Вам напиток'
 
-
-print(order("Капучино", "Макиато", "Эспрессо"))
-print(order("Капучино", "Макиато", "Эспрессо"))
-print(order("Капучино", "Макиато", "Эспрессо"))
-print(order("Капучино", "Макиато", "Эспрессо"))
-print(order("Капучино", "Макиато", "Эспрессо"))
+print(merge_sort([3, 1, 5, 3]))

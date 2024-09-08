@@ -1415,16 +1415,75 @@ lambda num: not sum(int(digit) for digit in str(num)) % 2
 
 
 # 4.3. Рекурсия. Декораторы. Генераторы
-# A.
-# B.
-# C.
-# D.
-# E.
-# F.
-# G.
-# H.
-# I.
-# J.
+# A.Рекурсивный сумматор
+def recursive_sum(*args):
+    if len(args) == 1:
+        return args[0]
+    return args[-1] + recursive_sum(*args[:-1])
+
+# B.Рекурсивный сумматор цифр
+def recursive_digit_sum(num):
+    if num // 10 == 0:
+        return int(num)
+    return recursive_digit_sum(num // 10) + num % 10
+# C.Многочлен N-ой степени
+def make_equation(*args):
+    if len(args) == 1:
+        return f'{args[0]}'
+    return f'({make_equation(*args[:-1])}) * x + {args[-1]}'
+# D.Декор результата
+
+def answer(f):
+
+    def decorated(*args, **kwargs):
+        return f'Результат функции: {f(*args, **kwargs)}'
+
+    return decorated
+# E.Накопление результата
+# F.Сортировка слиянием
+# G.Однотипность не порок
+
+def same_type(func):
+    def decorated(*args, **kwargs):
+        t = type(args[0])
+        for i in args[1:]:
+            if t != type(i):
+                print("Обнаружены различные типы данных")
+                return
+        return func(*args, **kwargs)
+    return decorated
+# H.Генератор Фибоначчи
+def fibonacci(n):
+    f, f1 = 0, 1
+    for i in range(n):
+        if i == 0:
+            yield f
+        elif i == 1:
+            yield f1
+        else:
+            f, f1 = f1, f1 + f
+            yield f1
+
+# I.Циклический генератор
+def cycle(lst):
+    i = 0
+    while True:
+        yield lst[i]
+        if i == len(lst) - 1:
+            i = 0
+        else:
+            i += 1
+
+# J."Выпрямление" списка
+def make_linear(lst):
+    lst2 = []
+    for i in lst:
+        if type(i) is list:
+            lst2 += make_linear(i)
+        else:
+            lst2 += [i]
+    return lst2
+
 # K.
 # L.
 # M.
