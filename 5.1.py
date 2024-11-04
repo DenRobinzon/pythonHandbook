@@ -66,7 +66,6 @@ class Programmer:
         return f'{self.name} {self.time}ч. {self.salary}тгр.'
 
 
-
 # E.
 # F.
 # G.
