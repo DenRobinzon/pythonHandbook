@@ -1483,7 +1483,79 @@ def make_linear(lst):
         else:
             lst2 += [i]
     return lst2
+# 5.1. Объектная модель Python. Классы, поля и методы
 
+# A.Классная точка
+
+class Point():
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+# B.Классная точка 2.0
+
+class Point():
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+
+    def length(self, point):
+        return round((((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5), 2)
+
+# C.Не нажимай красную кнопку!
+
+class RedButton:
+
+    def __init__(self, n=0):
+        self.n = n
+
+    def click(self):
+        print('Тревога!')
+        self.n += 1
+
+    def count(self):
+        return self.n
+
+# D.Работа не волк
+
+class Programmer:
+    salaries = {'Junior': 10, 'Middle': 15, 'Senior': 20}
+
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+        self.salary = self.salaries[grade]
+        self.money = 0
+        self.exp = 0
+
+    def work(self, time):
+        self.exp += time
+        self.money += time * self.salary
+
+    def rise(self):
+        if self.grade == 'Junior':
+            self.grade = 'Middle'
+            self.salary += 5
+        elif self.grade == 'Middle':
+            self.grade = 'Senior'
+            self.salary += 5
+        else:
+            self.salary += 1
+
+    def info(self):
+        return f'{self.name} {self.exp}ч. {self.money}тгр.'
+# E.
+# F.
+# G.
+# H.
+# I.
+# J.
 # K.
 # L.
 # M.
@@ -1494,5 +1566,3 @@ def make_linear(lst):
 # R.
 # S.
 # T.
-
-
