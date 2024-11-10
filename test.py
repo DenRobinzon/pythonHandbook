@@ -18,19 +18,22 @@ class Rectangle:
         return round(self.width, 2), round(self.height, 2)
 
     def move(self, dx, dy):
-        self.pos = self.pos[0] + dx, self.pos[1] + dy
+        self.pos = round(self.pos[0] + dx, 2), round(self.pos[1] + dy, 2)
 
     def resize(self, width, height):
         self.width = width
         self.height = height
 
     def turn(self):
-        self.pos = self.pos[0] + self.width / 2 - self.height / 2, self.pos[1] - self.height / 2 + self.width / 2
+        self.pos = round(self.pos[0] + self.width / 2 - self.height / 2, 2), round(
+            self.pos[1] - self.height / 2 + self.width / 2, 2)
         self.width, self.height = self.height, self.width
 
     def scale(self, multiplicator):
-        self.pos = self.pos[0] + self.width / 2 - self.width * multiplicator / 2, self.pos[
-            1] - self.height / 2 + self.height * multiplicator / 2
+        self.pos = (
+            round(self.pos[0] + self.width / 2 - self.width * multiplicator / 2, 2),
+            round(self.pos[1] - self.height / 2 + self.height * multiplicator / 2, 2)
+        )
         self.width, self.height = self.width * multiplicator, self.height * multiplicator
 
 
