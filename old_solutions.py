@@ -1550,10 +1550,151 @@ class Programmer:
 
     def info(self):
         return f'{self.name} {self.exp}ч. {self.money}тгр.'
-# E.
-# F.
-# G.
-# H.
+# E.Классный прямоугольник
+class Rectangle:
+    def __init__(self, a, c):
+        self.a = a
+        self.c = c
+
+    def area(self):
+        return round(abs((self.a[0] - self.c[0]) * (self.a[1] - self.c[1])), 2)
+
+    def perimeter(self):
+        return round(abs(self.a[0] - self.c[0]) * 2 + abs(self.a[1] - self.c[1]) * 2, 2)
+
+# F.Классный прямоугольник 2.0
+class Rectangle:
+
+    def __init__(self, a, c):
+        self.a = a
+        self.c = c
+        self.pos = min(self.a[0], self.c[0]), max(self.a[1], self.c[1])
+
+    def area(self):
+        return round(abs((self.a[0] - self.c[0]) * (self.a[1] - self.c[1])), 2)
+
+    def perimeter(self):
+        return round(abs(self.a[0] - self.c[0]) * 2 + abs(self.a[1] - self.c[1]) * 2, 2)
+
+    def get_pos(self):
+        return self.pos
+
+    def get_size(self):
+        return round(abs(self.a[0] - self.c[0]), 2), round(abs(self.a[1] - self.c[1]), 2)
+
+    def move(self, dx, dy):
+        self.a = (round(self.a[0] + dx, 2), round(self.a[1] + dy, 2))
+        self.c = (round(self.c[0] + dx, 2), round(self.c[1] + dy, 2))
+        self.pos = min(self.a[0], self.c[0]), max(self.a[1], self.c[1])
+
+    def resize(self, width, height):
+        self.a = self.pos
+        self.c = self.pos[0] + width, self.pos[1] - height
+
+# G.Классный прямоугольник 3.0 не решена была
+# H.Шашки
+class Cell:
+
+    def __init__(self, state):
+        self.state = state
+
+    def status(self):
+        return self.state
+
+
+class Checkers:
+
+    def __init__(self):
+        self.desk = {
+            'A': {
+                '8': 'X',
+                '7': 'B',
+                '6': 'X',
+                '5': 'X',
+                '4': 'X',
+                '3': 'W',
+                '2': 'X',
+                '1': 'W',
+            },
+            'B': {
+                '8': 'B',
+                '7': 'X',
+                '6': 'B',
+                '5': 'X',
+                '4': 'X',
+                '3': 'X',
+                '2': 'W',
+                '1': 'X',
+            },
+            'C': {
+                '8': 'X',
+                '7': 'B',
+                '6': 'X',
+                '5': 'X',
+                '4': 'X',
+                '3': 'W',
+                '2': 'X',
+                '1': 'W',
+            },
+            'D': {
+                '8': 'B',
+                '7': 'X',
+                '6': 'B',
+                '5': 'X',
+                '4': 'X',
+                '3': 'X',
+                '2': 'W',
+                '1': 'X',
+            },
+            'E': {
+                '8': 'X',
+                '7': 'B',
+                '6': 'X',
+                '5': 'X',
+                '4': 'X',
+                '3': 'W',
+                '2': 'X',
+                '1': 'W',
+            },
+            'F': {
+                '8': 'B',
+                '7': 'X',
+                '6': 'B',
+                '5': 'X',
+                '4': 'X',
+                '3': 'X',
+                '2': 'W',
+                '1': 'X',
+            },
+            'G': {
+                '8': 'X',
+                '7': 'B',
+                '6': 'X',
+                '5': 'X',
+                '4': 'X',
+                '3': 'W',
+                '2': 'X',
+                '1': 'W',
+            },
+            'H': {
+                '8': 'B',
+                '7': 'X',
+                '6': 'B',
+                '5': 'X',
+                '4': 'X',
+                '3': 'X',
+                '2': 'W',
+                '1': 'X',
+            },
+        }
+
+    def move(self, f, t):
+        self.desk[t[0]][t[1]] = self.desk[f[0]][f[1]]
+        self.desk[f[0]][f[1]] = 'X'
+
+    def get_cell(self, p):
+        return Cell(self.desk[p[0]][p[1]])
+
 # I.
 # J.
 # K.
