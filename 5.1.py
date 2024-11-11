@@ -109,7 +109,45 @@ class Rectangle:
         self.width = width
         self.height = height
 
-# G.Классный прямоугольник 3.0
+# G.Классный прямоугольник 3.0 тесты не все проходит но решение вроде норм
+
+class Rectangle:
+
+    def __init__(self, point_1, point_2):
+        self.pos = (min(point_1[0], point_2[0]), max(point_1[1], point_2[1]))
+        self.width = abs(point_1[0] - point_2[0])
+        self.height = abs(point_1[1] - point_2[1])
+
+    def perimeter(self):
+        return round((self.width + self.height) * 2, 2)
+
+    def area(self):
+        return round(self.width * self.height, 2)
+
+    def get_pos(self):
+        return round(self.pos[0], 2), round(self.pos[1], 2)
+
+    def get_size(self):
+        return round(self.width, 2), round(self.height, 2)
+
+    def move(self, dx, dy):
+        self.pos = round(self.pos[0] + dx, 2), round(self.pos[1] + dy, 2)
+
+    def resize(self, width, height):
+        self.width = width
+        self.height = height
+
+    def turn(self):
+        self.pos = round(self.pos[0] + self.width / 2 - self.height / 2, 2), round(
+            self.pos[1] - self.height / 2 + self.width / 2, 2)
+        self.width, self.height = self.height, self.width
+
+    def scale(self, multiplicator):
+        self.pos = (
+            round(self.pos[0] + self.width / 2 - self.width * multiplicator / 2, 2),
+            round(self.pos[1] - self.height / 2 + self.height * multiplicator / 2, 2)
+        )
+        self.width, self.height = self.width * multiplicator, self.height * multiplicator
 
 
 # H.Шашки
@@ -142,15 +180,36 @@ class Cell:
     def status(self):
         return self.state
 
-# I.
-# J.
-# K.
-# L.
-# M.
-# N.
-# O.
-# P.
-# Q.
-# R.
-# S.
-# T.
+# I.Очередь
+class Queue:
+
+    def __init__(self):
+        self.queue = []
+
+    def push(self, item):
+        self.queue.append(item)
+
+    def pop(self):
+        return self.queue.pop(0)
+
+    def is_empty(self):
+        return not bool(self.queue)
+
+
+# J.Стек
+class Stack:
+
+    def __init__(self):
+        self.stack = []
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+        return self.stack.pop()
+
+    def is_empty(self):
+        return not bool(self.stack)
+
+
+

@@ -1695,6 +1695,180 @@ class Checkers:
     def get_cell(self, p):
         return Cell(self.desk[p[0]][p[1]])
 
+# I.Очередь
+
+class Queue:
+
+    def __init__(self):
+        self.queue = []
+
+    def push(self, item):
+        self.queue.append(item)
+
+    def pop(self):
+        return self.queue.pop(0)
+
+    def is_empty(self):
+        return not bool(self.queue)
+# J.Стек
+class Stack:
+
+    def __init__(self):
+        self.queue = []
+
+    def push(self, item):
+        self.queue.append(item)
+
+    def pop(self):
+        return self.queue.pop(-1)
+
+    def is_empty(self):
+        return not bool(self.queue)
+
+# 5.2. Волшебные методы, переопределение методов. Наследование
+
+# A.Классная точка 3.0
+class Point():
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+
+    def length(self, point):
+        return round((((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5), 2)
+
+
+class PatchedPoint(Point):
+
+    def __init__(self, x='n', y='n'):
+        super().__init__(x, y)
+        if x == 'n' and y == 'n':
+            self.x = 0
+            self.y = 0
+        elif x != 'n' and y == 'n':
+            self.x, self.y = self.x[0], self.x[1]
+
+# B.Классная точка 4.0
+class Point():
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+
+    def length(self, point):
+        return round((((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5), 2)
+
+
+class PatchedPoint(Point):
+
+    def __init__(self, x='n', y='n'):
+        super().__init__(x, y)
+        if x == 'n' and y == 'n':
+            self.x = 0
+            self.y = 0
+        elif x != 'n' and y == 'n':
+            self.x, self.y = self.x[0], self.x[1]
+
+    def __str__(self):
+        return f'{self.x, self.y}'
+
+    def __repr__(self):
+        return f'PatchedPoint{self.x, self.y}'
+
+# C.Классная точка 5.0
+class Point():
+
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def move(self, x, y):
+        self.x += x
+        self.y += y
+
+    def length(self, point):
+        return round((((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5), 2)
+
+
+class PatchedPoint(Point):
+
+    def __init__(self, x='n', y='n'):
+        super().__init__(x, y)
+        if x == 'n' and y == 'n':
+            self.x = 0
+            self.y = 0
+        elif x != 'n' and y == 'n':
+            self.x, self.y = self.x[0], self.x[1]
+
+    def __str__(self):
+        return f'{self.x, self.y}'
+
+    def __repr__(self):
+        return f'PatchedPoint{self.x, self.y}'
+
+    def __add__(self, xy):
+        return PatchedPoint(self.x + xy[0], self.y + xy[1])
+
+    def __iadd__(self, xy):
+        self.x += xy[0]
+        self.y += xy[1]
+        return self
+
+# D.Дроби v0.1
+class Fraction:
+
+    def __init__(self, a, b='n'):
+        if b == 'n':
+            a, b = (int(i) for i in a.split('/'))
+        x, y = a, b
+        while y:
+            x, y = y, x % y
+        self._a = int(a / x)
+        self._b = int(b / x)
+
+    def numerator(self, num='n'):
+        if num == 'n':
+            return self._a
+        else:
+            a = num
+            b = self._b
+
+            x, y = a, b
+            while y:
+                x, y = y, x % y
+            self._a = int(a / x)
+            self._b = int(b / x)
+
+    def denominator(self, num='n'):
+        if num == 'n':
+            return self._b
+        else:
+            a = self._a
+            b = num
+            x, y = a, b
+            while y:
+                x, y = y, x % y
+            self._a = int(a / x)
+            self._b = int(b / x)
+
+    def __str__(self):
+        return f'{self._a}/{self._b}'
+
+    def __repr__(self):
+        return f'Fraction({self._a}, {self._b})'
+
+# E.
+# F.
+# G.
+# H.
 # I.
 # J.
 # K.
@@ -1702,8 +1876,3 @@ class Checkers:
 # M.
 # N.
 # O.
-# P.
-# Q.
-# R.
-# S.
-# T.
