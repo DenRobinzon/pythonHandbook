@@ -1865,7 +1865,9 @@ class Fraction:
     def __repr__(self):
         return f'Fraction({self._a}, {self._b})'
 
-# E.
+# E.Дроби v0.2
+
+
 # F.
 # G.
 # H.

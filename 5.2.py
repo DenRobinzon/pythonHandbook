@@ -136,7 +136,8 @@ class Fraction:
         self._numerator //= gcd
         self._denominator //= gcd
 
-# E.
+# E.Дроби v0.2
+
 # F.
 # G.
 # H.
