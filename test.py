@@ -7,13 +7,13 @@ class Fraction:
         self._numerator, self._denominator = num, denom
         self._is_negative = False
         self.__gcd_check()
-        self.__check_negative()
+        self.__negative_check()
 
     def numerator(self, num=None):
         if num:
             self._numerator = num
             self.__gcd_check()
-            self.__check_negative()
+            self.__negative_check()
         else:
             return self._numerator
 
@@ -21,7 +21,7 @@ class Fraction:
         if num:
             self._denominator = num
             self.__gcd_check()
-            self.__check_negative()
+            self.__negative_check()
         else:
             return self._denominator
 
@@ -29,7 +29,7 @@ class Fraction:
         return f'{self._is_negative * '-'}{self._numerator}/{self._denominator}'
 
     def __repr__(self):
-        return f'Fraction({self._is_negative * '-'}{self._numerator}, {self._denominator})'
+        return f"Fraction('{self._is_negative * '-'}{self._numerator}/{self._denominator}')"
 
     def __gcd_check(self):
         num1, num2 = self._numerator, self._denominator
@@ -39,23 +39,28 @@ class Fraction:
         self._numerator //= gcd
         self._denominator //= gcd
 
-    def __check_negative(self):
+    def __negative_check(self):
         if (self._numerator < 0) != (self._denominator < 0):
             self._is_negative = True
         self._numerator = abs(self._numerator)
         self._denominator = abs(self._denominator)
 
     def __neg__(self):
-        return Fraction(-self.numerator(), self.denominator())
+        if self._is_negative:
+            new_numerator = self.numerator()
+        else:
+            new_numerator = -self.numerator()
+
+        return Fraction(new_numerator, self.denominator())
 
 
-# a = Fraction(1, 3)
-# b = Fraction(-2, -6)
-# c = Fraction(-3, 9)
-# d = Fraction(4, -12)
-# print(a, b, c, d)
-# print(*map(repr, (a, b, c, d)))
-
+a = Fraction(1, 3)
+b = Fraction(-2, -6)
+c = Fraction(-3, 9)
+d = Fraction(4, -12)
+print(a, b, c, d)
+print(*map(repr, (a, b, c, d)))
+print(*map(str, (a, b, c, d)))
 
 a = Fraction('-1/2')
 b = -a
