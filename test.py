@@ -5,31 +5,30 @@ class Fraction:
         else:
             num, denom = numbers
         self._numerator, self._denominator = num, denom
-        self._is_negative = False
         self.__gcd_check()
-        self.__negative_check()
 
     def numerator(self, num=None):
         if num:
+            if self._numerator < 0:
+                num = -num
             self._numerator = num
             self.__gcd_check()
-            self.__negative_check()
+
         else:
-            return self._numerator
+            return abs(self._numerator)
 
     def denominator(self, num=None):
         if num:
             self._denominator = num
             self.__gcd_check()
-            self.__negative_check()
         else:
             return self._denominator
 
     def __str__(self):
-        return f'{self._is_negative * '-'}{self._numerator}/{self._denominator}'
+        return f'{self._numerator}/{self._denominator}'
 
     def __repr__(self):
-        return f"Fraction('{self._is_negative * '-'}{self._numerator}/{self._denominator}')"
+        return f"Fraction('{self._numerator}/{self._denominator}')"
 
     def __gcd_check(self):
         num1, num2 = self._numerator, self._denominator
@@ -39,36 +38,37 @@ class Fraction:
         self._numerator //= gcd
         self._denominator //= gcd
 
-    def __negative_check(self):
-        if (self._numerator < 0) != (self._denominator < 0):
-            self._is_negative = True
-        self._numerator = abs(self._numerator)
-        self._denominator = abs(self._denominator)
-
     def __neg__(self):
-        if self._is_negative:
-            new_numerator = self.numerator()
-        else:
-            new_numerator = -self.numerator()
+        return Fraction(-self._numerator, self._denominator)
 
-        return Fraction(new_numerator, self.denominator())
+    def __add__(self, other):
+        new_numerator = self._numerator * other._denominator + self._denominator * other._numerator
+        new_denominator = self._denominator * other._denominator
+        return Fraction(new_numerator, new_denominator)
 
+    def __sub__(self, other):
+        new_numerator = self._numerator * other._denominator - self._denominator * other._numerator
+        new_denominator = self._denominator * other._denominator
+        return Fraction(new_numerator, new_denominator)
+
+    def __iadd__(self, other):
+        self._numerator = self._numerator * other._denominator + self._denominator * other._numerator
+        self._denominator = self._denominator * other._denominator
+        self.__gcd_check()
+        return self
+
+    def __isub__(self, other):
+        self._numerator = self._numerator * other._denominator - self._denominator * other._numerator
+        self._denominator = self._denominator * other._denominator
+        self.__gcd_check()
+        return self
 
 a = Fraction(1, 3)
-b = Fraction(-2, -6)
-c = Fraction(-3, 9)
-d = Fraction(4, -12)
-print(a, b, c, d)
-print(*map(repr, (a, b, c, d)))
-print(*map(str, (a, b, c, d)))
+b = Fraction(1, 2)
+c = a + b
+print(a, b, c, a is c, b is c)
 
-a = Fraction('-1/2')
-b = -a
-print(a, b, a is b)
-b.numerator(-b.numerator())
-a.denominator(-3)
-print(a, b)
-print(a.numerator(), a.denominator())
-print(b.numerator(), b.denominator())
-
-# print(Fraction('-4/2'))
+a = Fraction(1, 8)
+c = b = Fraction(3, 8)
+b -= a
+print(a, b, c, b is c)
