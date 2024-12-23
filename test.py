@@ -1,7 +1,11 @@
 class Fraction:
     def __init__(self, *numbers):
-        if isinstance(numbers[0], str):
-            num, denom = (int(num) for num in numbers[0].split('/'))
+        if len(numbers) == 1:
+            if isinstance(numbers[0], str) and '/' in numbers[0]:
+                num, denom = (int(num) for num in numbers[0].split('/'))
+            else:
+                num, denom = int(numbers[0]), 1
+
         else:
             num, denom = numbers
         self._numerator, self._denominator = num, denom
@@ -42,33 +46,136 @@ class Fraction:
         return Fraction(-self._numerator, self._denominator)
 
     def __add__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        new_numerator = self._numerator * other._denominator + self._denominator * other._numerator
+        new_denominator = self._denominator * other._denominator
+        return Fraction(new_numerator, new_denominator)
+
+    def __radd__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
         new_numerator = self._numerator * other._denominator + self._denominator * other._numerator
         new_denominator = self._denominator * other._denominator
         return Fraction(new_numerator, new_denominator)
 
     def __sub__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
         new_numerator = self._numerator * other._denominator - self._denominator * other._numerator
         new_denominator = self._denominator * other._denominator
         return Fraction(new_numerator, new_denominator)
 
+    def __rsub__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        new_numerator = self._denominator * other._numerator - self._numerator * other._denominator
+        new_denominator = self._denominator * other._denominator
+        return Fraction(new_numerator, new_denominator)
+
     def __iadd__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
         self._numerator = self._numerator * other._denominator + self._denominator * other._numerator
         self._denominator = self._denominator * other._denominator
         self.__gcd_check()
         return self
 
     def __isub__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
         self._numerator = self._numerator * other._denominator - self._denominator * other._numerator
         self._denominator = self._denominator * other._denominator
         self.__gcd_check()
         return self
 
-a = Fraction(1, 3)
-b = Fraction(1, 2)
-c = a + b
-print(a, b, c, a is c, b is c)
+    def __mul__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        new_numerator = self._numerator * other._numerator
+        new_denomenator = self._denominator * other._denominator
+        return Fraction(new_numerator, new_denomenator)
 
-a = Fraction(1, 8)
-c = b = Fraction(3, 8)
-b -= a
-print(a, b, c, b is c)
+    def __rmul__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        new_numerator = self._numerator * other._numerator
+        new_denomenator = self._denominator * other._denominator
+        return Fraction(new_numerator, new_denomenator)
+
+    def __truediv__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        new_numerator, new_denomenator = self._numerator * other._denominator, self._denominator * other._numerator
+        return Fraction(new_numerator, new_denomenator)
+
+    def __rtruediv__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        new_numerator, new_denomenator = self._denominator * other._numerator, self._numerator * other._denominator
+        return Fraction(new_numerator, new_denomenator)
+
+    def __imul__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        self._numerator = self._numerator * other._numerator
+        self._denominator = self._denominator * other._denominator
+        self.__gcd_check()
+        return self
+
+    def __itruediv__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        self._numerator, self._denominator = self._numerator * other._denominator, self._denominator * other._numerator
+        self.__gcd_check()
+        return self
+
+    def reverse(self):
+        return Fraction(self._denominator, self._numerator)
+
+    def __lt__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        return self._numerator * other._denominator < self._denominator * other._numerator
+
+    def __le__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        return self._numerator * other._denominator <= self._denominator * other._numerator
+
+    def __eq__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        return self._numerator * other._denominator == self._denominator * other._numerator
+
+    def __ne__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        return self._numerator * other._denominator != self._denominator * other._numerator
+
+    def __gt__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        return self._numerator * other._denominator > self._denominator * other._numerator
+
+    def __ge__(self, other):
+        if isinstance(other, (int, str)):
+            other = Fraction(other)
+        return self._numerator * other._denominator >= self._denominator * other._numerator
+
+
+
+a = Fraction(1)
+b = Fraction('2')
+c, d = map(Fraction.reverse, (2 + a, -1 + b))
+print(a, b, c, d)
+print(a > b, c > d)
+print(a >= 1, b >= 1, c >= 1, d >= 1)
+
+
+a = Fraction(1, 2)
+b = Fraction('2/3')
+c, d = map(Fraction.reverse, (3 - a, 2 / b))
+print(a, b, c, d)
+print(a > b, c > d)
+print(a >= 1, b >= 1, c >= 1, d >= 1)
