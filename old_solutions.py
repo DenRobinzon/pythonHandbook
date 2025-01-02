@@ -1867,7 +1867,38 @@ class Fraction:
 
 # E.Дроби v0.2
 
+# 5.3. Модель исключений Python. Try, except, else, finally. Модули
+# A.Обработка ошибок
+try:
+    func()
+except ValueError as e:
+    print('ValueError')
+except TypeError as e:
+    print('TypeError')
+except SystemError as e:
+    print('SystemError')
+else:
+    print('No Exceptions')
 
+# B.Ломать — не строить
+func('q', {1})
+
+# C.Ломать — не строить 2
+class Bad:
+    def __init__(self):
+        pass
+
+    def __str__(self):
+        raise Exception
+
+    def __repr__(self):
+        raise Exception
+
+
+func(Bad())
+
+# D.
+# E.
 # F.
 # G.
 # H.
@@ -1878,3 +1909,8 @@ class Fraction:
 # M.
 # N.
 # O.
+# P.
+# Q.
+# R.
+# S.
+# T.
