@@ -1897,13 +1897,172 @@ class Bad:
 
 func(Bad())
 
-# D.
-# E.
-# F.
-# G.
-# H.
-# I.
-# J.
+# D.Контроль параметров
+def only_int(*args):
+    if not all(isinstance(i, int) for i in args):
+        raise TypeError
+
+
+def only_pos_ev(*args):
+    if any(i % 2 != 0 for i in args) or any(i <= 0 for i in args):
+        raise ValueError
+
+
+def only_positive_even_sum(*args):
+    only_int(*args)
+    only_pos_ev(*args)
+    return sum(args)
+
+# E.Слияние с проверкой
+
+def merge(a, b):
+    if not all(hasattr(i, '__iter__') for i in (a, b)):
+        raise StopIteration()
+
+    if not (all(isinstance(i, type(a[0])) for i in a) and
+            all(isinstance(i, type(a[0])) for i in b)):
+        raise TypeError()
+
+    if not all(list(i) == sorted(i) for i in (a, b)):
+        raise ValueError()
+
+    return (sorted(list(a) + list(b)))
+
+# F.Корень зла 2 не решена
+
+# G.Валидация имени
+class CyrillicError(Exception):
+    pass
+
+
+class CapitalError(Exception):
+    pass
+
+
+def name_validation(name):
+    if not isinstance(name, str):
+        raise TypeError
+
+    for i in name:
+        if i.lower() not in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя':
+            raise CyrillicError
+
+    if name != name.capitalize():
+        raise CapitalError
+
+    return name
+
+# H.Валидация имени пользователя
+class BadCharacterError(Exception):
+    pass
+
+
+class StartsWithDigitError(Exception):
+    pass
+
+
+def username_validation(name):
+    if not isinstance(name, str):
+        raise TypeError
+
+    for i in name:
+        if i.lower() not in 'abcdefghijklmnopqrstuvwqxyz1234567890_':
+            raise BadCharacterError
+
+    if name[0] in '1234567890':
+        raise StartsWithDigitError
+
+    return name
+
+# I.Валидация пользователя
+class CyrillicError(Exception):
+    pass
+
+
+class CapitalError(Exception):
+    pass
+
+
+class BadCharacterError(Exception):
+    pass
+
+
+class StartsWithDigitError(Exception):
+    pass
+
+
+def name_validation(name):
+    if not isinstance(name, str):
+        raise TypeError
+
+    for i in name:
+        if i.lower() not in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя':
+            raise CyrillicError
+
+    if name != name.capitalize():
+        raise CapitalError
+
+    return name
+
+
+def username_validation(name):
+    if not isinstance(name, str):
+        raise TypeError
+
+    for i in name:
+        if i.lower() not in 'abcdefghijklmnopqrstuvwqxyz1234567890_':
+            raise BadCharacterError
+
+    if name[0] in '1234567890':
+        raise StartsWithDigitError
+
+    return name
+
+
+def user_validation(*args, **kwargs):
+    if args or list(kwargs.keys()) != ['last_name', 'first_name', 'username']:
+        raise KeyError
+
+    name_validation(kwargs['last_name'])
+    name_validation(kwargs['first_name'])
+    username_validation(kwargs['username'])
+
+    return kwargs
+
+# J.Валидация пароля
+from hashlib import sha256 as sha
+
+
+class MinLengthError(Exception):
+    pass
+
+
+class PossibleCharError(Exception):
+    pass
+
+
+class NeedCharError(Exception):
+    pass
+
+
+def password_validation(password, min_length=8,
+                        possible_chars='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_',
+                        at_least_one=str.isdigit):
+    if not isinstance(password, str):
+        raise TypeError
+
+    if len(password) < min_length:
+        raise MinLengthError
+
+    for i in password:
+        if i not in possible_chars:
+            raise PossibleCharError
+
+    if not any(at_least_one(i) for i in password):
+        raise NeedCharError
+
+    return sha(password.encode('utf-8')).hexdigest()
+
 # K.
 # L.
 # M.
