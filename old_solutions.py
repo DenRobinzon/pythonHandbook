@@ -2063,6 +2063,75 @@ def password_validation(password, min_length=8,
 
     return sha(password.encode('utf-8')).hexdigest()
 
+# 6.1. Модули math и numpy
+# A.Математика — круто, но это не точно
+import math
+
+
+x = float(input())
+
+res = (math.log(math.pow(x, 3 / 16), 32) +
+       math.pow(x, math.cos(x * math.pi / (2 * math.e))) -
+       math.pow(math.sin(x / math.pi), 2))
+
+
+print(res)
+
+# B.Потоковый НОД
+from sys import stdin
+import math
+
+
+for line in stdin:
+    print(math.gcd(*(int(i) for i in line.split())))
+
+# C.Есть варианты? Не решена
+# D.Среднее не арифметическое
+import math
+
+
+nums = [float(i) for i in input().split()]
+
+print(math.pow(math.prod(nums), 1 / len(nums)))
+
+# E.Шаг навстречу
+import math
+
+
+d = [float(i) for i in input().split()]
+p = [float(i) for i in input().split()]
+
+p2 = math.cos(p[1]) * p[0], math.sin(p[1]) * p[0]
+
+print(math.pow((d[0] - p2[0]) ** 2 + (d[1] - p2[1]) ** 2, 0.5))
+
+# F.Матрица умножения
+import numpy as np
+
+
+def multiplication_matrix(n):
+    a1 = np.array([list(range(1, n + 1))] * n)
+    a2 = np.rot90(a1, -1)
+    return (a1 * a2)
+
+# G.Шахматная подготовка
+import numpy as np
+
+
+def make_board(n):
+    return np.array([[1, 0] * int(n / 2), [0, 1] * int(n / 2)] * int(n / 2), dtype='int8')
+
+# H.Числовая змейка 3.0 не решена
+# I.Вращение
+import numpy as np
+
+
+def rotate(mtrx, ang):
+    for i in range(int(ang / 90)):
+        mtrx = np.rot90(mtrx, -1)
+    return mtrx
+
+# J.Лесенка не решена
 # K.
 # L.
 # M.
